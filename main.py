@@ -41,7 +41,7 @@ def reset_all():
     player = Actor("main_car", (WIDTH / 2, HEIGHT))
     DELAY = 0.01
     fuel_level = 1000
-    fuel_bags = [Actor("fuel_bag", (choice ([WIDTH / 2 - 200, WIDTH / 2,
+    fuel_bags = [Actor("fuel_bag", (choice([WIDTH / 2 - 200, WIDTH / 2,
                                             WIDTH / 2 + 200]), -250))]
 
     with open("highscore.hex", "r") as file:
