@@ -29,8 +29,6 @@ score = 0
 random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200, WIDTH / 2,
                                                   WIDTH / 2 + 200]), -250))]
 
-# game_over = Actor("game_over_logo", (WIDTH / 2, HEIGHT / 2 - 100))
-# music.play("extreme_sport_trap_music_pista")
 
 
 def reset_all():
@@ -54,9 +52,6 @@ def reset_all():
     random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200,
                                                       WIDTH / 2, WIDTH
                                                       / 2 + 200]), -250))]
-
-    # game_over = Actor("game_over_logo", (WIDTH / 2, HEIGHT / 2 - 100))
-    # music.play("extreme_sport_trap_music_pista")
 
 
 def draw():
@@ -121,14 +116,6 @@ def update():
 
 def up_one_px():
     player.y -= 7
-
-
-def left_one_px():
-    player.x -= 2
-
-
-def right_one_px():
-    player.x += 2
 
 
 def update_road():
