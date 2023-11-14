@@ -56,7 +56,7 @@ def reset_all():
 
 def draw():
     global DELAY
-    if mode is "game":
+    if mode == "game":
         screen.fill((30, 200, 0))
         road.draw()
         player.draw()
@@ -70,7 +70,7 @@ def draw():
         else:
             screen.draw.text(str(fuel_level/10).replace(".", ","), (70, 20),
                              fontsize=35, fontname="font")
-    elif mode is "menu":
+    elif mode == "menu":
         screen.fill((4, 173, 238))
         player.draw()
         if player.y > WIDTH / 2:
@@ -96,9 +96,9 @@ def draw():
 
 def update():
     global fuel_level, mode, score
-    if mode is "menu" and player.y < HEIGHT / 2:
+    if mode == "menu" and player.y < HEIGHT / 2:
         player.y = HEIGHT / 2
-    elif mode is "game":
+    elif mode == "game":
         fuel_level -= 3
         if fuel_level <= 0:
             mode = "game over"
@@ -165,15 +165,15 @@ def update_fuel_bags():
 
 def on_key_down(key):
     global mode
-    if mode is "game":
+    if mode == "game":
         if key == keys.A or key == keys.LEFT:
             if player.x == WIDTH / 2 or player.x == WIDTH / 2 + 200:
                 player.x -= 200
         elif key == keys.D or key == keys.RIGHT:
             if player.x == WIDTH / 2 - 200 or player.x == WIDTH / 2:
                 player.x += 200
-    elif mode is "menu":
-        if key is keys.SPACE:
+    elif mode == "menu":
+        if key == keys.SPACE:
             mode = "game"
     elif mode == "game over":
         reset_all()
