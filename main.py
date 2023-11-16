@@ -130,14 +130,6 @@ def up_one_px():
     player.y -= 7
 
 
-def left_one_px():
-    player.x -= 2
-
-
-def right_one_px():
-    player.x += 2
-
-
 def update_road():
     road.y += 12
     if road.y >= HEIGHT + 200:
