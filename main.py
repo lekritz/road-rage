@@ -5,6 +5,7 @@ WIDTH = 720
 HEIGHT = 800
 display.set_mode((WIDTH, HEIGHT))
 
+
 # Importing
 from pgzrun import go
 from random import choice
@@ -20,15 +21,25 @@ fuel_level = 1000
 fuel_bags = [Actor("fuel_bag", (choice([WIDTH / 2 - 200, WIDTH / 2, WIDTH / 2
                                         + 200]),
                                 -250))]
-
-with open("highscore.hex", "r") as file:
-    highscore = int(file.read(), base=16)
+try:
+    with open("highscore.hex", "r") as file:
+        highscore = int(file.read(), base=16)
+except FileNotFoundError:
+    with open("highscore.hex", "w") as file:
+        file.write("0")
+    highscore = 0
+except ValueError:
+    print("File `highscore.hex` == corrupted.")
+    if input("Would you like to overwrite file? "
+             "Type 'confirm' to confirm\n>>>") == "confirm":
+        with open("highscore.hex", "w") as file:
+            file.write("0")
+        highscore = 0
 
 score = 0
 
 random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200, WIDTH / 2,
                                                   WIDTH / 2 + 200]), -250))]
-
 
 
 def reset_all():
@@ -52,6 +63,7 @@ def reset_all():
     random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200,
                                                       WIDTH / 2, WIDTH
                                                       / 2 + 200]), -250))]
+
 
 
 def draw():
@@ -118,6 +130,14 @@ def up_one_px():
     player.y -= 7
 
 
+def left_one_px():
+    player.x -= 2
+
+
+def right_one_px():
+    player.x += 2
+
+
 def update_road():
     road.y += 12
     if road.y >= HEIGHT + 200:
@@ -176,7 +196,8 @@ def on_key_down(key):
         if key == keys.SPACE:
             mode = "game"
     elif mode == "game over":
-        reset_all()
+        if key == keys.SPACE:
+            reset_all()
 
 
 def on_mouse_down(pos):
@@ -186,9 +207,9 @@ def on_mouse_down(pos):
     elif mode == "game over":
         reset_all()
     elif mode == "game":
-        if 55 < pos[0] < 260:
+        if 55 < pos[0] < 260 and player.x == 360:
             player.x = 160
-        elif 444 < pos[0] < WIDTH - 55:
+        elif 444 < pos[0] < WIDTH - 55 and player.x == 360:
             player.x = 560
         elif 260 < pos[0] < 444:
             player.x = 360
@@ -199,7 +220,7 @@ def update_highscore():
     score += 1
     if score > highscore:
         with open("highscore.hex", "w") as self:
-            self.write(hex(score))
+            self.write(hex(score)[2:])
         highscore += 1
 
 
