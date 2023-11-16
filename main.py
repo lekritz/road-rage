@@ -65,7 +65,6 @@ def reset_all():
                                                       / 2 + 200]), -250))]
 
 
-
 def draw():
     global DELAY
     if mode == "game":
