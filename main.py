@@ -29,12 +29,7 @@ except FileNotFoundError:
         file.write("0")
     highscore = 0
 except ValueError:
-    print("File `highscore.hex` == corrupted.")
-    if input("Would you like to overwrite file? "
-             "Type 'confirm' to confirm\n>>>") == "confirm":
-        with open("highscore.hex", "w") as file:
-            file.write("0")
-        highscore = 0
+    mode = "hs corrupt"  # "hs" stands for "highscore".
 
 score = 0
 
@@ -103,7 +98,14 @@ def draw():
                         owidth=1.5, ocolor="white")
         screen.draw.text("PRESS SPACE TO CONTINUE", center=(WIDTH / 2, 400),
                          fontsize=40, fontname="font")
-
+    if mode == "hs corrupt":
+        screen.fill((0, 0, 0))
+        screen.draw.text("FILE \"HIGHSCORE\" CORRUPT",
+                         center=(WIDTH / 2, HEIGHT / 2 - 100),
+                         fontsize=80, color="white")
+        screen.draw.text("",
+                         center=(WIDTH / 2, HEIGHT / 2 - 100),
+                         fontsize=80, color="white")
 
 def update():
     global fuel_level, mode, score
@@ -213,6 +215,13 @@ def update_highscore():
         with open("highscore.hex", "w") as self:
             self.write(hex(score)[2:])
         highscore += 1
+
+
+def hard_reset_on_highscore_file() -> None:
+    global highscore
+    with open("highscore.hex", "w") as file:
+        file.write("0")
+    highscore = 0
 
 
 go()
