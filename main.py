@@ -187,12 +187,10 @@ def on_key_down(key):
     if mode == "game":
         if key == keys.A or key == keys.LEFT:
             if player.x == WIDTH / 2 or player.x == WIDTH / 2 + 200:
-                animate(player, pos=(player.x - 200, player.y), duration=0.15,
-                        tween="accel_decel")
+                swerve(-200, "add")
         elif key == keys.D or key == keys.RIGHT:
             if player.x == WIDTH / 2 - 200 or player.x == WIDTH / 2:
-                animate(player, pos=(player.x + 200, player.y), duration=0.15,
-                        tween="accel_decel")
+                swerve(200, "add")
     elif mode == "menu":
         if key == keys.SPACE:
             mode = "game"
@@ -209,14 +207,11 @@ def on_mouse_down(pos):
         reset_all()
     elif mode == "game":
         if 55 < pos[0] < 260 and player.x == 360:
-            animate(player, pos=(160, player.y), duration=0.15,
-                    tween="accel_decel")
+            swerve(160, "set")
         elif 444 < pos[0] < WIDTH - 55 and player.x == 360:
-            animate(player, pos=(560, player.y), duration=0.15,
-                    tween="accel_decel")
+            swerve(560, "set")
         elif 260 < pos[0] < 444:
-            animate(player, pos=(360, player.y), duration=0.15,
-                    tween="accel_decel")
+            swerve(360, "set")
 
 
 def update_highscore():
@@ -233,6 +228,15 @@ def hard_reset_on_highscore_file() -> None:
     with open("highscore.hex", "w") as file:
         file.write("0")
     highscore = 0
+
+
+def swerve(value: int, kind: str):
+    if kind == "add":
+        animate(player, pos=(player.x + value, player.y), duration=0.15,
+                tween="accel_decel")
+    elif kind == "set":
+        animate(player, pos=(value, player.y), duration=0.15,
+                tween="accel_decel")
 
 
 go()
