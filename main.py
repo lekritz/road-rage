@@ -103,9 +103,11 @@ def draw():
         screen.draw.text("FILE \"HIGHSCORE\" CORRUPT",
                          center=(WIDTH / 2, HEIGHT / 2 - 100),
                          fontsize=80, color="white")
-        screen.draw.text("",
+        screen.draw.text("CONTACT SPECIALIST OR\nHOLD RIGHT-SHIFT+H+S+R TO"
+                         " RESET.",
                          center=(WIDTH / 2, HEIGHT / 2 - 100),
                          fontsize=80, color="white")
+
 
 def update():
     global fuel_level, mode, score
