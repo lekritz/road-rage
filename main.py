@@ -101,12 +101,12 @@ def draw():
     if mode == "hs corrupt":
         screen.fill((0, 0, 0))
         screen.draw.text("FILE \"HIGHSCORE\" CORRUPT",
-                         center=(WIDTH / 2, HEIGHT / 2 - 100),
-                         fontsize=80, color="white")
+                         center=(WIDTH / 2, HEIGHT / 2 - 50),
+                         fontsize=40, color="white")
         screen.draw.text("CONTACT SPECIALIST OR\nHOLD RIGHT-SHIFT+H+S+R TO"
                          " RESET.",
-                         center=(WIDTH / 2, HEIGHT / 2 - 100),
-                         fontsize=80, color="white")
+                         center=(WIDTH / 2, HEIGHT / 2 + 50),
+                         fontsize=40, color="white")
 
 
 def update():
@@ -127,6 +127,10 @@ def update():
         update_fuel_bags()
         player.y = HEIGHT / 2 + 200
         update_highscore()
+    elif mode == "hs corrupt":
+        if (keyboard[keys.RSHIFT] and keyboard[keys.H] and keyboard[keys.S]
+                and keyboard[keys.R]):
+            hard_reset_on_highscore_file()
 
 
 def up_one_px():
