@@ -187,10 +187,10 @@ def on_key_down(key):
     if mode == "game":
         if key == keys.A or key == keys.LEFT:
             if player.x == WIDTH / 2 or player.x == WIDTH / 2 + 200:
-                player.x -= 200
+                animate(player, pos=(player.x - 200, player.y))
         elif key == keys.D or key == keys.RIGHT:
             if player.x == WIDTH / 2 - 200 or player.x == WIDTH / 2:
-                player.x += 200
+                animate(player, pos=(player.x + 200, player.y))
     elif mode == "menu":
         if key == keys.SPACE:
             mode = "game"
@@ -207,11 +207,11 @@ def on_mouse_down(pos):
         reset_all()
     elif mode == "game":
         if 55 < pos[0] < 260 and player.x == 360:
-            player.x = 160
+            animate(player, pos=(160, player.y))
         elif 444 < pos[0] < WIDTH - 55 and player.x == 360:
-            player.x = 560
+            animate(player, pos=(player.x - 560, player.y))
         elif 260 < pos[0] < 444:
-            player.x = 360
+            animate(player, pos=(player.x - 360, player.y))
 
 
 def update_highscore():
