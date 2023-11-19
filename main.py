@@ -37,6 +37,13 @@ random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200, WIDTH / 2,
                                                   WIDTH / 2 + 200]), -250))]
 
 
+def startup_parking() -> None:
+    animate(player, pos=(WIDTH / 2, HEIGHT / 2), duration=2, tween="decelerate")
+
+
+startup_parking()
+
+
 def reset_all():
     global TITLE, mode, CAR_IMAGES, road, player, DELAY, fuel_level,\
         fuel_bags, highscore, score, random_cars, game_over
@@ -58,6 +65,7 @@ def reset_all():
     random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200,
                                                       WIDTH / 2, WIDTH
                                                       / 2 + 200]), -250))]
+    startup_parking()
 
 
 def draw():
@@ -79,8 +87,6 @@ def draw():
     elif mode == "menu":
         screen.fill((4, 173, 238))
         player.draw()
-        if player.y > WIDTH / 2:
-            clock.schedule(up_one_px, DELAY)
         screen.draw.text("ROAD RAGE", center=(WIDTH / 2, 40),
                          fontsize=100, fontname="font")
         screen.draw.text("EXPLORE THE TRUE ROAD RAGE AND DRIVE YOUR CAR "
