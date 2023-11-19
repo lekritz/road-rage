@@ -1,3 +1,9 @@
+"""
+Copyright (C) 2023 Henryk Popiolek
+
+Full license found at:
+https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+"""
 # Setting the window on center of the screen
 from pygame import display
 
