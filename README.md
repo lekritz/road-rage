@@ -41,7 +41,7 @@ follow PEP-8, and put all imports at the top, the window will summon oddly to th
 
 ## License application
 
-Copyright (C) 2023 Henryk Popioɫek
+Copyright &copy; 2023 Henryk Popioɫek
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; GPL-2.0-only
 
