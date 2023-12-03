@@ -11,7 +11,6 @@ WIDTH = 720
 HEIGHT = 800
 display.set_mode((WIDTH, HEIGHT))
 
-
 # Importing
 from pgzrun import go
 from random import choice
@@ -44,14 +43,15 @@ random_cars = [Actor(choice(CAR_IMAGES), (choice([WIDTH / 2 - 200, WIDTH / 2,
 
 
 def startup_parking() -> None:
-    animate(player, pos=(WIDTH / 2, HEIGHT / 2), duration=2, tween="decelerate")
+    animate(player, pos=(WIDTH / 2, HEIGHT / 2), duration=2,
+            tween="decelerate")
 
 
 startup_parking()
 
 
 def reset_all():
-    global TITLE, mode, CAR_IMAGES, road, player, DELAY, fuel_level,\
+    global TITLE, mode, CAR_IMAGES, road, player, DELAY, fuel_level, \
         fuel_bags, highscore, score, random_cars, game_over
     TITLE = "Road Rage"
     mode = "menu"
@@ -85,10 +85,10 @@ def draw():
         for fuel_bag in fuel_bags:
             fuel_bag.draw()
         if fuel_level < 200:
-            screen.draw.text(str(fuel_level/10).replace(".", ","), (70, 20),
+            screen.draw.text(str(fuel_level / 10).replace(".", ","), (70, 20),
                              fontsize=35, color="red", fontname="font")
         else:
-            screen.draw.text(str(fuel_level/10).replace(".", ","), (70, 20),
+            screen.draw.text(str(fuel_level / 10).replace(".", ","), (70, 20),
                              fontsize=35, fontname="font")
     elif mode == "menu":
         screen.fill((4, 173, 238))
@@ -105,9 +105,9 @@ def draw():
         DELAY += 0.01
     if mode == "game over":
         screen.fill((130, 127, 130))
-        screen.draw.text("GAME OVER", center=(WIDTH / 2, HEIGHT / 2 -100),
-                        fontsize=90, fontname="tiny", color="#f00000",
-                        owidth=1.5, ocolor="white")
+        screen.draw.text("GAME OVER", center=(WIDTH / 2, HEIGHT / 2 - 100),
+                         fontsize=90, fontname="tiny", color="#f00000",
+                         owidth=1.5, ocolor="white")
         screen.draw.text("PRESS SPACE TO CONTINUE", center=(WIDTH / 2, 400),
                          fontsize=40, fontname="font")
     if mode == "hs corrupt":
