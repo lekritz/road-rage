@@ -17,6 +17,7 @@ from random import choice
 
 # Variables
 TITLE = "Road Rage"
+ICON = "icon.png"
 mode = "menu"
 CAR_IMAGES = ["blue_car", "pink_car", "red_car"]
 road = Actor("road", (WIDTH - 70, HEIGHT), anchor=("right", "bottom"))
